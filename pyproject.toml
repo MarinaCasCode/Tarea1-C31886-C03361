@@ -1,10 +1,11 @@
 [project]
-name = "tarea1"
+name = "tarea1-c31886-c03361"
 version = "0.1.0"
-description = "Add your description here"
+description = "Primera etapa de la primera tarea programada del curso CI-0116"
 readme = "README.md"
 authors = [
-    { name = "Braulio J. Solano-Rojas", email = "braulio@solsoft.biz" }
+    { name = "Marina Castro C31886", email = "marina.castro@ucr.ac.cr" },
+    { name = "Emanuel Gonzalez C03361", email = "emanuel.gonzalezchaves@ucr.ac.cr" }
 ]
 requires-python = ">=3.13"
 dependencies = [
