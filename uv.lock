@@ -46,7 +46,7 @@ wheels = [
 ]
 
 [[package]]
-name = "tarea1"
+name = "tarea1-c31886-c03361"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
