@@ -6,6 +6,12 @@ class Par:
     llave: str
     valor: str
 
+    def __gt__(self, other: "Par") -> bool:
+        return self.llave > other.llave
+
+    def __lt__(self, other: "Par") -> bool:
+        return self.llave < other.llave
+
 class Funcion(ABC):
     """
     Clase abstracta Funcion. Dicta los métodos que deben tener las funciones.
