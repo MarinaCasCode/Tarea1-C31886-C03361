@@ -16,7 +16,7 @@ from rich.prompt import Prompt
 from tarea1.funcion import Funcion
 from tarea1.listaordenadadinamica import ListaOrdenadaDinámica
 from tarea1.listaordenadaestatica import ListaOrdenadaEstática
-
+from tarea1.tablahashabierta import TablaHashAbierta
 console = Console()
 
 
@@ -227,7 +227,7 @@ def menu_clase() -> Funcion:
                 case "2":
                     return ListaOrdenadaEstática(100)
                 case "3":
-                    pass
+                    return TablaHashAbierta()
                 case "4":
                     pass
                 case "5":
