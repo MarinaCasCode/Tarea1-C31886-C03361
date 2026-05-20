@@ -17,6 +17,8 @@ from tarea1.funcion import Funcion
 from tarea1.listaordenadadinamica import ListaOrdenadaDinámica
 from tarea1.listaordenadaestatica import ListaOrdenadaEstática
 from tarea1.tablahashabierta import TablaHashAbierta
+from tarea1.abbpunteros import AbbPunteros
+from tarea1.abbvectorheap import ABBVectorHeap
 console = Console()
 
 
@@ -229,9 +231,9 @@ def menu_clase() -> Funcion:
                 case "3":
                     return TablaHashAbierta()
                 case "4":
-                    pass
+                    return AbbPunteros()
                 case "5":
-                    pass
+                    return ABBVectorHeap()
                 case "6":
                     pass
                 case "7":
