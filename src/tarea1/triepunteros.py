@@ -1,98 +1,100 @@
 from tarea1.funcion import Funcion
 
 
-def _nodo():
-    return {"hijos": {}, "valor": None}
+class NodoTrie:
+    def __init__(self):
+        self.hijos: dict[str, "NodoTrie"] = {}
+        self.valor: str | None = None
+        self.es_final: bool = False
 
 
 class TriePunteros(Funcion):
 
     def __init__(self):
-        self.__raíz   = _nodo()
-        self.__tamaño = 0
+        self.__raiz   = NodoTrie()
+        self.__tamano = 0
 
     def __len__(self):
-        return self.__tamaño
+        return self.__tamano
 
     def __getitem__(self, llave):
         return self.obtenga(llave)
 
     # Asigne
     def asigne(self, llave, valor):
-        nodo = self.__raíz
-        for c in llave:
-            if c not in nodo["hijos"]:
-                nodo["hijos"][c] = _nodo()
-            nodo = nodo["hijos"][c]
-        # Si la llave ya existe, actualizar valor
-        if nodo["valor"] is None:
-            self.__tamaño += 1
-        nodo["valor"] = valor
+        nodo = self.__raiz
+        for caracter in llave:
+            if caracter not in nodo.hijos:
+                nodo.hijos[caracter] = NodoTrie()
+            nodo = nodo.hijos[caracter]
+        if not nodo.es_final:
+            self.__tamano += 1
+        nodo.es_final = True
+        nodo.valor = valor
 
     # Elimine
-    def elimine(self, llave):
-        def _borrar(nodo, llave, i):
-            if i == len(llave):
-                # La llave no existe, no hacer nada
-                if nodo["valor"] is None:
-                    return False
-                nodo["valor"] = None
-                self.__tamaño -= 1
-                # El nodo puede borrarse si no tiene hijos
-                return len(nodo["hijos"]) == 0
-            c = llave[i]
-            if c not in nodo["hijos"]:
-                return False
-            if _borrar(nodo["hijos"][c], llave, i + 1):
-                # Desenlazar el hijo si quedó vacío
-                del nodo["hijos"][c]
-                return nodo["valor"] is None and len(nodo["hijos"]) == 0
-            return False
-        _borrar(self.__raíz, llave, 0)
+    def __eliminar(self, nodo: NodoTrie, llave, posicion):
+        if posicion == len(llave):
+            if not nodo.es_final:
+                return False, False  # la llave no existe, no hacer nada
+            nodo.es_final = False
+            nodo.valor = None
+            self.__tamano -= 1
+            # El nodo puede borrarse si no tiene hijos
+            return True, len(nodo.hijos) == 0
 
-    # Limpie 
+        caracter = llave[posicion]
+        hijo = nodo.hijos.get(caracter)
+        if hijo is None:
+            return False, False
+
+        eliminado, borrar_hijo = self.__eliminar(hijo, llave, posicion + 1)
+        if borrar_hijo:
+            # Desenlazar el hijo si quedó vacío
+            del nodo.hijos[caracter]
+
+        borrar_nodo = not nodo.es_final and len(nodo.hijos) == 0
+        return eliminado, borrar_nodo
+
+    def elimine(self, llave):
+        self.__eliminar(self.__raiz, llave, 0)
+
+    # Limpie
     def limpie(self):
-        self.__raíz   = _nodo()
-        self.__tamaño = 0
+        self.__raiz   = NodoTrie()
+        self.__tamano = 0
 
     # Obtenga
     def obtenga(self, llave):
-        nodo = self.__raíz
-        for c in llave:
-            if c not in nodo["hijos"]:
+        nodo = self.__raiz
+        for caracter in llave:
+            nodo = nodo.hijos.get(caracter)
+            if nodo is None:
                 return None  # indicador de ausencia
-            nodo = nodo["hijos"][c]
-        return nodo["valor"]
+        if nodo.es_final:
+            return nodo.valor
+        return None
 
     # Llaves
+    def __recorrer(self, nodo: NodoTrie, prefijo, llaves):
+        if nodo.es_final:
+            llaves.append(prefijo)
+        for caracter in sorted(nodo.hijos):  # sorted garantiza orden lexicográfico
+            self.__recorrer(nodo.hijos[caracter], prefijo + caracter, llaves)
+
     def llaves(self):
         resultado = []
-        def _rec(nodo, prefijo):
-            if nodo["valor"] is not None:
-                resultado.append(prefijo)
-            for c, hijo in nodo["hijos"].items():
-                _rec(hijo, prefijo + c)
-        _rec(self.__raíz, "")
+        self.__recorrer(self.__raiz, "", resultado)
         return resultado
 
     # Imprima
     def imprima(self):
-        def _rec(nodo, prefijo):
-            if nodo["valor"] is not None:
-                print(f"{prefijo}: {nodo['valor']}")
-            for c, hijo in nodo["hijos"].items():
-                _rec(hijo, prefijo + c)
-        _rec(self.__raíz, "")
+        for llave in self.llaves():
+            print(f"{llave}: {self.obtenga(llave)}")
 
-    # __str__ 
-    def __str__(self):
-        pares = []
-        def _rec(nodo, prefijo):
-            if nodo["valor"] is not None:
-                pares.append(f"{prefijo}: {nodo['valor']}")
-            for c, hijo in nodo["hijos"].items():
-                _rec(hijo, prefijo + c)
-        _rec(self.__raíz, "")
+    #  __str__
+    def __str__(self) -> str:
+        pares = [f"{llave}: {self.obtenga(llave)}" for llave in self.llaves()]
         return "{" + ", ".join(pares) + "}"
 
     # Done
