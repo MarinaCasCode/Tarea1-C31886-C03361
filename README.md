@@ -10,8 +10,7 @@ Implementación del Modelo Función como arreglo asociativo llave-valor. El mode
 representa una función parcial sobreyectiva del conjunto de llaves al conjunto de
 valores: cada llave es única y se asocia a exactamente un valor.
 
-El proyecto se entrega en tres etapas. Este repositorio corresponde a la primera,
-con fecha de entrega el 28 de abril.
+El proyecto se entrega en tres etapas. Este repositorio corresponde a las dos primeras.
 
 ## Primera etapa
 
@@ -25,6 +24,20 @@ de redistribución, y el programa de prueba con menú interactivo.
 | Lista Ordenada por punteros | `src/tarea1/listaordenadadinamica.py` |
 | Lista Ordenada por arreglos | `src/tarea1/listaordenadaestatica.py` |
 | Tabla Hash abierta | `src/tarea1/tablahashabierta.py` |
+
+## Segunda etapa
+
+Incluye el Árbol de Búsqueda Binaria genérico con sus dos implementaciones (por
+punteros y por vector heap), el Trie genérico con sus dos implementaciones (por
+punteros y por arreglos), y la integración de todas las estructuras en el menú
+interactivo.
+
+| Estructura | Archivo |
+|---|---|
+| ABB por punteros | `src/tarea1/abbpunteros.py` |
+| ABB por vector heap | `src/tarea1/abbvectorheap.py` |
+| Trie por punteros | `src/tarea1/triepunteros.py` |
+| Trie por arreglos | `src/tarea1/triearreglos.py` |
 
 La especificación y descripción formal de cada estructura está en [`doc/index.md`](doc/index.md).
 
@@ -49,10 +62,13 @@ Lanzar el menú interactivo:
 uv run tarea1
 ```
 
-Correr las pruebas:
+Correr las pruebas de una estructura:
 
 ```bash
-uv run python test/test_listaordenadadinamica.py
+uv run python test/test_abbpunteros.py
+uv run python test/test_abbvectorheap.py
+uv run python test/test_triepunteros.py
+uv run python test/test_triearreglos.py
 ```
 
 ## Estructura del repositorio
