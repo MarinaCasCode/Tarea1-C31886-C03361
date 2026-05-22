@@ -205,17 +205,17 @@ print("llave1 y llave2 comparten valor:", abb8.obtenga("llave1"))
 
 
 # =============================================================
-# 15. Redimensionar
+# 15. Sin límite   - el dict crece sin necesidad de redimensionar
 # =============================================================
-titulo("Redimensionar: insertar más elementos que la capacidad inicial")
-abb9 = ABBVectorHeap(capacidad=4)
-for i in range(6):
-    abb9.asigne(f"llave{i}", f"valor{i:014}aaaaa")
+titulo("Sin límite de capacidad: insertar muchos elementos")
+abb9 = ABBVectorHeap()
+for i in range(50):
+    abb9.asigne(f"llave{i:03}", f"valor{i:014}aaaaa")
 
-assert len(abb9) == 6
-for i in range(6):
-    assert abb9.obtenga(f"llave{i}") == f"valor{i:014}aaaaa"
-print("Redimensionado correctamente, tamaño:", len(abb9))
+assert len(abb9) == 50
+for i in range(50):
+    assert abb9.obtenga(f"llave{i:03}") == f"valor{i:014}aaaaa"
+print("Inserción masiva correcta, tamaño:", len(abb9))
 
 
 # =============================================================
