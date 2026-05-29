@@ -280,7 +280,8 @@ def main() -> None:
             funcion = menu_clase()
             menu_funcion(funcion)
         case "2":
-            pass
+            from tarea1.benchmark import menu_benchmark
+            menu_benchmark()
 
 
 if __name__ == "__main__":

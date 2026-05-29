@@ -4,10 +4,11 @@ UMBRAL_CARGA = 0.75
 
 
 class TablaHashAbierta(Funcion):
-    def __init__(self, table_size=11):
+    def __init__(self, table_size=11, redistribuir: bool = True):
         self.table_size = table_size
         self.table = [[] for _ in range(table_size)]
         self.__tamaño = 0
+        self.__redistribuir = redistribuir
 
     def __len__(self):
         return self.__tamaño
@@ -26,7 +27,7 @@ class TablaHashAbierta(Funcion):
     def __factor_carga(self) -> float:
         return self.__tamaño / self.table_size
 
-    def __redistribuir(self) -> None:
+    def __redistribuir_tabla(self) -> None:
         table_size_nueva = self.table_size * 2
         table_nueva = [[] for _ in range(table_size_nueva)]
 
@@ -42,9 +43,8 @@ class TablaHashAbierta(Funcion):
         self.table_size = table_size_nueva
 
     def asigne(self, llave, valor):
-        # Redistribuir si se supera el umbral de carga
-        if self.__factor_carga() >= UMBRAL_CARGA:
-            self.__redistribuir()
+        if self.__redistribuir and self.__factor_carga() >= UMBRAL_CARGA:
+            self.__redistribuir_tabla()
 
         índice = self.hash_func(llave)
         cubeta = self.table[índice]
