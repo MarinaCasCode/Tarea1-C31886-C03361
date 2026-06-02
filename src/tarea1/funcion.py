@@ -1,4 +1,4 @@
-ffrom abc import ABC, abstractmethod
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 import string
 

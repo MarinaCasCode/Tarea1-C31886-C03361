@@ -1,4 +1,4 @@
-ffrom tarea1.funcion import Par
+from tarea1.funcion import Par
 from tarea1.funcion import Funcion
 from tarea1.funcion import validar_llave
 from tarea1.funcion import validar_par

@@ -1,4 +1,4 @@
-ffrom tarea1.funcion import Funcion, Par, validar_llave, validar_par
+from tarea1.funcion import Funcion, Par, validar_llave, validar_par
 
 
 class NodoABB:
