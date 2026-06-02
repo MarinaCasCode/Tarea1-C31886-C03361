@@ -1,4 +1,4 @@
-from tarea1.funcion import Funcion, Par
+from tarea1.funcion import Funcion, Par, validar_llave, validar_par
 
 
 class ABBVectorHeap(Funcion):
@@ -23,6 +23,7 @@ class ABBVectorHeap(Funcion):
 
     # Asigne
     def asigne(self, llave, valor):
+        validar_par(llave, valor)
         indice = 0
         while indice in self.__arbol:
             par = self.__arbol[indice]
@@ -92,6 +93,7 @@ class ABBVectorHeap(Funcion):
             self.__eliminar_indice(sucesor)
 
     def elimine(self, llave):
+        validar_llave(llave)
         indice = self.__indice_llave(llave)
         if indice is None:
             return  # la llave no existe, no hacer nada
@@ -105,6 +107,7 @@ class ABBVectorHeap(Funcion):
 
     # Obtenga
     def obtenga(self, llave):
+        validar_llave(llave)
         indice = self.__indice_llave(llave)
         if indice is None:
             return None  # indicador de ausencia

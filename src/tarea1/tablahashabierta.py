@@ -1,4 +1,4 @@
-from tarea1.funcion import Funcion
+from tarea1.funcion import Funcion, validar_llave, validar_par
 
 UMBRAL_CARGA = 0.75
 
@@ -18,6 +18,7 @@ class TablaHashAbierta(Funcion):
 
     # Función hash polinomial con multiplicador 31 descrita en index.md
     def hash_func(self, key: str) -> int:
+        validar_llave(key)
         hash_value = 0
         p = 31
         for char in key:
@@ -43,6 +44,7 @@ class TablaHashAbierta(Funcion):
         self.table_size = table_size_nueva
 
     def asigne(self, llave, valor):
+        validar_par(llave, valor)
         if self.__redistribuir and self.__factor_carga() >= UMBRAL_CARGA:
             self.__redistribuir_tabla()
 
@@ -59,6 +61,7 @@ class TablaHashAbierta(Funcion):
         self.__tamaño += 1
 
     def elimine(self, llave):
+        validar_llave(llave)
         índice = self.hash_func(llave)
         cubeta = self.table[índice]
 
@@ -74,6 +77,7 @@ class TablaHashAbierta(Funcion):
         self.__tamaño = 0
 
     def obtenga(self, llave):
+        validar_llave(llave)
         índice = self.hash_func(llave)
         for k, v in self.table[índice]:
             if k == llave:

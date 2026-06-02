@@ -1,5 +1,7 @@
-from tarea1.funcion import Par
+ffrom tarea1.funcion import Par
 from tarea1.funcion import Funcion
+from tarea1.funcion import validar_llave
+from tarea1.funcion import validar_par
 
 class Nodo:
     def __init__(self, elemento: Par | None = None):
@@ -18,6 +20,7 @@ class ListaOrdenadaDinámica(Funcion):
         return self.obtenga(llave)
 
     def asigne(self, llave, valor):
+        validar_par(llave, valor)
         elemento = Par(llave, valor)
         referencia: Nodo = self.__cabeza
         nodo = Nodo(elemento)
@@ -35,6 +38,7 @@ class ListaOrdenadaDinámica(Funcion):
             self.__tamaño += 1  
 
     def elimine(self, llave):
+        validar_llave(llave)
         ref: Nodo = self.__cabeza
 
         while ref.siguiente is not None and ref.siguiente.elemento.llave < llave:
@@ -53,6 +57,7 @@ class ListaOrdenadaDinámica(Funcion):
         self.__tamaño = 0
 
     def obtenga(self, llave):
+        validar_llave(llave)
         ref: Nodo = self.__cabeza.siguiente
 
         while ref is not None and ref.elemento.llave < llave:

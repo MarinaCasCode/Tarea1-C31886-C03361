@@ -1,4 +1,4 @@
-from tarea1.funcion import Funcion
+from tarea1.funcion import Funcion, validar_llave, validar_par
 from tarea1.arreglo import Array
 
 TAMAÑO_INICIAL = 100
@@ -40,6 +40,7 @@ class ListaOrdenadaEstática(Funcion):
         self.__arreglo = arreglo_nuevo
 
     def asigne(self, llave, valor):
+        validar_par(llave, valor)
         índice = self.__buscar(llave)
 
         # Si la llave ya existe actualizar valor
@@ -62,6 +63,7 @@ class ListaOrdenadaEstática(Funcion):
         self.__arreglo[índice] = (llave, valor)
 
     def elimine(self, llave):
+        validar_llave(llave)
         índice = self.__buscar(llave)
 
         # La llave no existe no hacer nada
@@ -84,6 +86,7 @@ class ListaOrdenadaEstática(Funcion):
         self.__último = None
 
     def obtenga(self, llave):
+        validar_llave(llave)
         índice = self.__buscar(llave)
         if índice < len(self) and self.__arreglo[índice] is not None and self.__arreglo[índice][0] == llave:
             return self.__arreglo[índice][1]

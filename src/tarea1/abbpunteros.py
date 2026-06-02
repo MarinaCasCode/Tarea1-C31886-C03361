@@ -1,4 +1,4 @@
-from tarea1.funcion import Funcion, Par
+ffrom tarea1.funcion import Funcion, Par, validar_llave, validar_par
 
 
 class NodoABB:
@@ -22,6 +22,7 @@ class AbbPunteros(Funcion):
 
     # Asigne
     def asigne(self, llave, valor):
+        validar_par(llave, valor)
         elemento = Par(llave, valor)
         if self.__raiz is None:
             self.__raiz = NodoABB(elemento)
@@ -80,6 +81,7 @@ class AbbPunteros(Funcion):
         return nodo, True
 
     def elimine(self, llave):
+        validar_llave(llave)
         self.__raiz, eliminado = self.__eliminar(self.__raiz, llave)
         if eliminado:
             self.__tamano -= 1
@@ -91,6 +93,7 @@ class AbbPunteros(Funcion):
 
     # Obtenga
     def obtenga(self, llave):
+        validar_llave(llave)
         nodo = self.__raiz
         while nodo is not None:
             if llave == nodo.elemento.llave:

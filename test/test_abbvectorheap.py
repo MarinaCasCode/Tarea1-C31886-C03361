@@ -1,4 +1,4 @@
-"""
+""""
 Pruebas para ABBVectorHeap (Árbol de Búsqueda Binaria por vector heap)
 
 Pruebas incluidas:
@@ -40,10 +40,10 @@ print("Tamaño inicial:", len(abb))
 # 2. Asigne básico
 # =============================================================
 titulo("Asigne: insertar cinco pares")
-abb.asigne("manzana", "frutarojaaaaaaaaaaa")
+abb.asigne("manzana", "frutarojaaaaaaaaaaaa")
 abb.asigne("banana",  "frutamarillaaaaaaaaa")
-abb.asigne("cereza",  "frutarojaaaaaaaaaaa")
-abb.asigne("durazno", "frutanaranjaaaaaaaa")
+abb.asigne("cereza",  "frutarojaaaaaaaaaaaa")
+abb.asigne("durazno", "frutanaranjaaaaaaaaa")
 abb.asigne("anona",   "frutaverdeaaaaaaaaaa")
 
 assert len(abb) == 5
@@ -68,7 +68,7 @@ print("Valor actualizado correctamente, tamaño sigue en:", len(abb))
 # 4. Obtenga
 # =============================================================
 titulo("Obtenga: llave existente y llave ausente")
-assert abb.obtenga("cereza") == "frutarojaaaaaaaaaaa"
+assert abb.obtenga("cereza") == "frutarojaaaaaaaaaaaa"
 print("cereza →", abb.obtenga("cereza"))
 
 assert abb.obtenga("papaya") is None
@@ -80,9 +80,9 @@ print("papaya → None (no existe)")
 # =============================================================
 titulo("Elimine: borrar hoja")
 abb2 = ABBVectorHeap()
-abb2.asigne("50", "cincuentaaaaaaaaaaa")
-abb2.asigne("30", "treintaaaaaaaaaaaaaaa")
-abb2.asigne("70", "setentaaaaaaaaaaaaaaa")
+abb2.asigne("50", "cincuentaaaaaaaaaaaa")
+abb2.asigne("30", "treintaaaaaaaaaaaaaa")
+abb2.asigne("70", "setentaaaaaaaaaaaaaa")
 abb2.asigne("20", "veinteaaaaaaaaaaaaaa")
 
 abb2.elimine("20")
@@ -106,9 +106,9 @@ print("Nodo con un hijo eliminado, llaves:", abb2.llaves())
 # =============================================================
 titulo("Elimine: borrar nodo con dos hijos")
 abb3 = ABBVectorHeap()
-abb3.asigne("50", "cincuentaaaaaaaaaaa")
-abb3.asigne("30", "treintaaaaaaaaaaaaaaa")
-abb3.asigne("70", "setentaaaaaaaaaaaaaaa")
+abb3.asigne("50", "cincuentaaaaaaaaaaaa")
+abb3.asigne("30", "treintaaaaaaaaaaaaaa")
+abb3.asigne("70", "setentaaaaaaaaaaaaaa")
 abb3.asigne("20", "veinteaaaaaaaaaaaaaa")
 abb3.asigne("40", "cuarentaaaaaaaaaaaaa")
 
@@ -157,9 +157,9 @@ print("Llaves en orden:", llaves5)
 # =============================================================
 titulo("Asigne: llaves numéricas como string")
 abb6 = ABBVectorHeap()
-abb6.asigne("007",  "agentesecretoaaaaaa")
+abb6.asigne("007",  "agentesecretoaaaaaaa")
 abb6.asigne("2025", "anionuevoaaaaaaaaaaa")
-abb6.asigne("42",   "larespuestaaaaaaaaa")
+abb6.asigne("42",   "larespuestaaaaaaaaaa")
 
 assert abb6.llaves() == ["007", "2025", "42"], f"Orden incorrecto: {abb6.llaves()}"
 print("Orden léxico de llaves numéricas:", abb6.llaves())
@@ -188,8 +188,8 @@ assert len(abb7) == 0
 assert abb7.llaves() == []
 print("Árbol limpio, tamaño:", len(abb7))
 
-abb7.asigne("nuevo", "despuesdeclearaaaaa")
-assert abb7.obtenga("nuevo") == "despuesdeclearaaaaa"
+abb7.asigne("nuevo", "despuesdeclearaaaaaa")
+assert abb7.obtenga("nuevo") == "despuesdeclearaaaaaa"
 print("Árbol reutilizable, nuevo valor:", abb7.obtenga("nuevo"))
 
 
@@ -210,11 +210,11 @@ print("llave1 y llave2 comparten valor:", abb8.obtenga("llave1"))
 titulo("Sin límite de capacidad: insertar muchos elementos")
 abb9 = ABBVectorHeap()
 for i in range(50):
-    abb9.asigne(f"llave{i:03}", f"valor{i:014}aaaaa")
+    abb9.asigne(f"llave{i:03}", "valormasivoaaaaaaaaa")
 
 assert len(abb9) == 50
 for i in range(50):
-    assert abb9.obtenga(f"llave{i:03}") == f"valor{i:014}aaaaa"
+    assert abb9.obtenga(f"llave{i:03}") == "valormasivoaaaaaaaaa"
 print("Inserción masiva correcta, tamaño:", len(abb9))
 
 

@@ -1,4 +1,4 @@
-from tarea1.funcion import Funcion
+from tarea1.funcion import Funcion, validar_llave, validar_par
 
 
 class NodoTrie:
@@ -22,6 +22,7 @@ class TriePunteros(Funcion):
 
     # Asigne
     def asigne(self, llave, valor):
+        validar_par(llave, valor)
         nodo = self.__raiz
         for caracter in llave:
             if caracter not in nodo.hijos:
@@ -57,6 +58,7 @@ class TriePunteros(Funcion):
         return eliminado, borrar_nodo
 
     def elimine(self, llave):
+        validar_llave(llave)
         self.__eliminar(self.__raiz, llave, 0)
 
     # Limpie
@@ -66,6 +68,7 @@ class TriePunteros(Funcion):
 
     # Obtenga
     def obtenga(self, llave):
+        validar_llave(llave)
         nodo = self.__raiz
         for caracter in llave:
             nodo = nodo.hijos.get(caracter)
