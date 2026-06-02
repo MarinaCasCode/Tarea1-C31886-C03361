@@ -10,7 +10,7 @@ Implementación del Modelo Función como arreglo asociativo llave-valor. El mode
 representa una función parcial sobreyectiva del conjunto de llaves al conjunto de
 valores: cada llave es única y se asocia a exactamente un valor.
 
-El proyecto se entrega en tres etapas. Este repositorio corresponde a las dos primeras.
+El proyecto se entrega en tres etapas. Este repositorio contiene las tres entregas completas.
 
 ## Primera etapa
 
@@ -40,6 +40,27 @@ interactivo.
 | Trie por arreglos | `src/tarea1/triearreglos.py` |
 
 La especificación y descripción formal de cada estructura está en [`doc/index.md`](doc/index.md).
+
+## Tercera etapa
+
+Análisis empírico de rendimiento de las siete estructuras. Incluye un programa de
+benchmark que mide los tiempos de las operaciones Assign, Lookup, Unassign, Print
+y Done, así como el uso de memoria, sobre tres tamaños de entrada (n = 100,
+50 000 y 1 000 000) con 10 corridas por experimento. El informe final con tablas,
+gráficas, comparación teoría vs. resultados empíricos y rangos para N se entrega
+como `Informe_Tarea1_TerceraEntrega.pdf`.
+
+| Componente | Archivo |
+|---|---|
+| Programa de benchmark | `src/tarea1/benchmark.py` |
+| Resultados crudos (10 corridas) | `resultados_benchmark.csv` |
+| Informe final | `Informe_Tarea1_TerceraEntrega.pdf` |
+
+Para lanzar el benchmark desde el menú principal: ejecutar `uv run tarea1` y
+seleccionar la opción 2 (Pruebas de rendimiento). Las estructuras con
+comportamiento cuadrático (Lista Ordenada, Tabla Hash sin redistribución) se
+omiten automáticamente por encima de su límite práctico y se documenta la
+limitación en el reporte.
 
 ## Requisitos
 
@@ -71,10 +92,21 @@ uv run python test/test_triepunteros.py
 uv run python test/test_triearreglos.py
 ```
 
+Ejecutar el benchmark completo (≈ 20–30 minutos a 10 corridas):
+
+```bash
+uv run tarea1        # menú principal, opción 2
+```
+
+Los resultados se guardan en `resultados_benchmark.csv`.
+
 ## Estructura del repositorio
 
 ```
-src/tarea1/     código fuente de cada implementación
-test/           pruebas por estructura de datos
-doc/            especificación y descripción de las estructuras
+src/tarea1/                          código fuente de cada implementación
+src/tarea1/benchmark.py              programa de análisis empírico
+test/                                pruebas por estructura de datos
+doc/                                 especificación y descripción de las estructuras
+resultados_benchmark.csv             datos crudos del benchmark (10 corridas)
+Informe_Tarea1_TerceraEntrega.pdf   informe final de la tercera entrega
 ```
